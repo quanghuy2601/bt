@@ -147,11 +147,11 @@ void Bubble_Sort_Student(LIST L)
 	{
 		for(int j=L.num-i-1 ; j>i ; j--)
 		{
-			if(strcmp(L.a[i].hoten, L.a[j].hoten) < 0)
+			if(L.a[i].hoten > L.a[j].hoten)
 			{
-				temp = L.a[i];
-				L.a[i] = L.a[j];
-				L.a[j] = L.a[i];
+				temp = L.a[j-1];
+				L.a[j-1] = L.a[j];
+				L.a[j] = temp;
 			}
 		}
 	}
