@@ -37,6 +37,7 @@ void InputDate(NgaySinh &z)
 					ngaymax = 29;
 				else
 					ngaymax = 28;
+				break;
 			case 4: case 6: case 9: case 11:
 					ngaymax = 30;
 					break;			
@@ -279,7 +280,10 @@ void Input_One_Old_Student(SV &x)
 //Huy
 void Output_One_Old_Student(SV x)
 {
-    printf("%10s %30s     %c %10s    %.1f   %.1f  %.1f   %.1f\n",x.mssv,x.hoten,x.gt,x.lop,x.toan,x.ly,x.hoa,x.dtb);
+	if(x.gt == 'X')
+    	printf("%10s %30s    Nu  %9s    %.1f   %.1f  %.1f  %.1f\n",x.mssv,x.hoten,x.lop,x.toan,x.ly,x.hoa,x.dtb);
+	if(x.gt == 'Y')
+    	printf("%10s %30s    Nam %9s    %.1f   %.1f  %.1f  %.1f\n",x.mssv,x.hoten,x.lop,x.toan,x.ly,x.hoa,x.dtb);
 }
 //Linh
 void Input_List_Old_Student(LIST &L)
@@ -311,7 +315,7 @@ void Output_List_Old_Student(LIST L)
 	}
 }
 //Nguyen
-void Bubble_Sort_Student(LIST L)
+void Bubble_Sort_Student(LIST &L)
 {
 	SV temp;
 	for(int i=0 ; i<L.num-1 ; i++)
@@ -392,6 +396,7 @@ void Output_List_Student_Mark(LIST L)
 	printf("Nhap danh sach sinh vien theo diem trung binh: ");
 	scanf("%f",&mark);
 	int count = 0;
+	Title2();
 	for(int i = 0 ; i < L.num ; i++)
 	{
 		if(L.a[i].dtb == mark)
@@ -524,11 +529,12 @@ void Menu(LIST &L)
 
 					if(found == -1)
 					{
-						printf("Khong the tim thay sinh vien!!!");
+						printf("Khong the tim thay sinh vien!!!\n");
                         system("pause");
 					}
                     else
                     {
+						Title2();
 						Output_One_Old_Student(L.a[found]);
                         system("pause");
 					}
@@ -547,14 +553,14 @@ void Menu(LIST &L)
 				}
                 else
                 {
-					DeleteStudent(L);
+					Output_List_Student_Mark(L);
                     system("pause");
 				}
             }
             break;
         case 7:         //Xuat sinh vien theo nganh CNTT
             {
-                if(IsEmpty(L) == NULL)
+                if(IsEmpty(L))
 				{
 					printf("Danh sach sinh vien hien dang rong!!!\n");
 					printf("Nhap so luong sinh vien: ");
