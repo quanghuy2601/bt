@@ -105,6 +105,16 @@ void NhapSo(int &a)
 	
 }
 //Huy
+bool Check_Name(char name[])
+{
+	for(int i = 0 ; i < strlen(name) - 1 ; i++)
+	{
+		if(name[i] >= '0' && name[i] <= '9')
+			return false;
+	}
+	return true;
+}
+//Huy
 void Standardized_Name(char name[])
 {
     char str[30];
@@ -175,12 +185,17 @@ void Input_One_Old_Student(SV &x)
 		fflush(stdin);
     	gets(x.mssv);
 		if(!Check_ID(x.mssv))
-			printf("MSSV khong hop le. Vui long nhap lai: ");
+			printf("MSSV vua nhap khong hop le. Vui long nhap lai: ");
 	} while (!Check_ID(x.mssv));
 
-    fflush(stdin);
     printf("Ho va ten: ");
-    gets(x.hoten);
+	do
+	{
+		fflush(stdin);
+    	gets(x.hoten);
+		if(!Check_Name(x.hoten))
+			printf("Ho ten vua nhap khong hop le. Vui long nhap lai: ");
+	} while (!Check_Name(x.hoten));
 	Standardized_Name(x.hoten);
 
 	printf("Gioi tinh (X-nu) | (Y-nam): ");
