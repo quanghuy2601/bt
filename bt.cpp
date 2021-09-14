@@ -334,19 +334,23 @@ void Bubble_Sort_Student(LIST &L)
 //Nguyen
 void DeleteStudent(LIST &L)
 {
+	int vt;
 	char mssv[11];
 	printf("Nhap ma so sinh vien can xoa: ");
 	fflush(stdin);
 	gets(mssv);
-
 	for(int i=0 ; i<L.num ; i++)
 	{
 		if(L.a[i].mssv == mssv)
 		{
-			L.a[i] = L.a[i + 1];
+			vt = i;
 		}
-		L.num --;
 	}
+	for(int i=vt ; i<L.num ; i++)
+	{
+		L.a[i] = L.a[i+1];
+	}
+	L.num--;
 }
 //Nguyen
 void AddStudent(LIST &L)
