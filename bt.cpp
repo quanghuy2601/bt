@@ -168,6 +168,33 @@ bool Check_ID(char id[])
 	return true;
 }
 //Huy
+bool Check_Class(char lop[])		//vi du: 20DATA1 or 20data1
+{
+	for(int i=0 ; i<strlen(lop)-1 ; i++)
+	{
+		if(lop[i] >= 'a' && lop[i] <= 'z')
+			lop[i] -= 32;
+	}
+
+	if(strlen(lop) != 7)
+		return false;
+	if(lop[0] < '0' || lop[0] > '9')
+		return false;
+	if(lop[1] < '0' || lop[1] > '9')
+		return false;
+	if(lop[6] < '0' || lop[6] > '9')
+		return false;
+	if(lop[2] < 'A' || lop[2] > 'Z')
+		return false;
+	if(lop[3] < 'A' || lop[3] > 'Z')
+		return false;
+	if(lop[4] < 'A' || lop[4] > 'Z')
+		return false;
+	if(lop[5] < 'A' || lop[5] > 'Z')
+		return false;
+	return true;
+}
+//Huy
 bool Check_Mark(float mark)
 {
 	if(mark<0 || mark >10)
@@ -215,8 +242,13 @@ void Input_One_Old_Student(SV &x)
 	InputDate(x.ns);
 	
     printf("\nLop: ");
-	fflush(stdin);
-    gets(x.lop);
+	do
+	{
+		fflush(stdin);
+		gets(x.lop);
+		if(!Check_Class(x.lop))
+			printf("Lop vua nhap khong hop le. Vui long nhap lai: ");
+	} while (!Check_Class(x.lop));
 
     printf("Diem mon Toan: ");
 	do
