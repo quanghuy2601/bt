@@ -49,7 +49,7 @@ void InputDate(NgaySinh &z)
     }else{
         printf("Ngay khong hop le!!!");
     }
-}
+
 //Nguyen
 void OutputDate(NgaySinh z)
 {
